@@ -7,6 +7,8 @@ export const textEllipsis = css`
   overflow: hidden;
 `;
 
+export const MAIN_COLOR = '#74b9ff';
+
 const GlobalStyles = createGlobalStyle`
   ${reset}
   * {
