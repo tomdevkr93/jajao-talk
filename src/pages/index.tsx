@@ -1,5 +1,8 @@
 import React from 'react';
+import WithAuth from '../components/auth/WithAuth';
 
-export default function Home() {
-  return <>Hello World!</>;
+function Home({ nickname }: any) {
+  return <>Hello World! {nickname} </>;
 }
+
+export default WithAuth(Home);
