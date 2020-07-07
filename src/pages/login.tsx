@@ -50,7 +50,7 @@ const LoginContainer = styled.div`
 
 const LoginFormWrapper = styled.fieldset`
   position: absolute;
-  top: 50%;
+  top: 48%;
   transform: translateY(-50%);
   width: 100%;
   text-align: center;
