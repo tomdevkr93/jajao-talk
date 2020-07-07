@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MAIN_COLOR } from '../utils/global-styles';
 import useLogin from '../hooks/useLogin';
+import { MAIN_COLOR } from '../utils/global-styles';
 
 function Login() {
   const { nickname, password, onChangeNickname, onChangePassword, onSubmit } = useLogin();
 
   return (
     <LoginContainer>
+      <Version>Version 1.0.0</Version>
       <form id="login" onSubmit={onSubmit}>
         <LoginFormWrapper form="login">
           <legend>
@@ -41,11 +42,23 @@ export default Login;
 
 const LoginContainer = styled.div`
   position: relative;
+  top: 2.5%;
   margin: 0 auto;
-  width: 100%;
+  width: 95%;
   max-width: 414px;
-  height: 100%;
+  height: 95%;
   background-color: ${MAIN_COLOR};
+  box-shadow: 0 0 15px black;
+  border-radius: 20px;
+`;
+
+const Version = styled.p`
+  position: absolute;
+  right: 1em;
+  bottom: 1.5em;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 200;
 `;
 
 const LoginFormWrapper = styled.fieldset`
@@ -94,7 +107,7 @@ const LoginFormWrapper = styled.fieldset`
     border-radius: 5px;
     font-weight: 500;
     text-align: center;
-    color: #5cbdea;
+    color: ${MAIN_COLOR};
     cursor: pointer;
   }
 `;
