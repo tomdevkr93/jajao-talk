@@ -7,7 +7,7 @@ export const textEllipsis = css`
   overflow: hidden;
 `;
 
-export const MAIN_COLOR = '#74b9ff';
+export const MAIN_COLOR = '#5CBDEA';
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
   }
   html{
     font-size: 16px;
+    font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
   }
   body{
     letter-spacing: -0.025em;

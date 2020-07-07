@@ -14,6 +14,11 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compo
         <meta name="description" content="JAJAO TALK" />
         <meta name="author" content="Lee Chanho<devho813@gmail.com>" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
       <GlobalStyles />
       <RecoilRoot>

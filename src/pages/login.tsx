@@ -10,7 +10,9 @@ function Login() {
     <LoginContainer>
       <form id="login" onSubmit={onSubmit}>
         <LoginFormWrapper form="login">
-          <legend>로고이미지</legend>
+          <legend>
+            <img src="/assets/common/main_logo.png" alt="main logo" />
+          </legend>
           <input
             type="text"
             placeholder="닉네임"
@@ -55,13 +57,20 @@ const LoginFormWrapper = styled.fieldset`
 
   legend {
     width: 100%;
+
+    img {
+      width: 30%;
+      border-radius: 50%;
+      box-shadow: 0 0 50px white inset;
+      user-select: none;
+    }
   }
 
   input {
     display: block;
     margin: 0 auto;
     padding: 0.8em;
-    width: 80%;
+    width: 70%;
     border: none;
   }
   input::placeholder {
@@ -69,8 +78,9 @@ const LoginFormWrapper = styled.fieldset`
   }
 
   input:first-of-type {
-    margin-top: 80px;
+    margin-top: 90px;
     border-radius: 5px 5px 0 0;
+    border-bottom: 1px solid #f5f5f5;
   }
   input:last-of-type {
     border-radius: 0 0 5px 5px;
@@ -79,10 +89,12 @@ const LoginFormWrapper = styled.fieldset`
   button {
     margin-top: 0.5em;
     padding: 0.8em;
-    width: 80%;
+    width: 70%;
     border: none;
     border-radius: 5px;
+    font-weight: 500;
     text-align: center;
+    color: #5cbdea;
     cursor: pointer;
   }
 `;
