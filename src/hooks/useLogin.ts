@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { meState } from './../recoil/atom';
 import { useSetRecoilState } from 'recoil';
 import axios from 'axios';
-import { useRouter } from 'next/Router';
+import { useRouter } from 'next/router';
 
 function useLogin() {
   const [nickname, setNickname] = useState('');
