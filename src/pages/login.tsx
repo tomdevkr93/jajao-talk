@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useLogin from '../hooks/useLogin';
 import { MAIN_COLOR } from '../utils/global-styles';
+import media from '../utils/media-query';
 
 function Login() {
   const { nickname, password, onChangeNickname, onChangePassword, onSubmit } = useLogin();
@@ -42,23 +43,28 @@ export default Login;
 
 const LoginContainer = styled.div`
   position: relative;
-  top: 2.5%;
   margin: 0 auto;
-  width: 95%;
+  width: 100%;
   max-width: 414px;
-  height: 95%;
+  height: 100%;
   background-color: ${MAIN_COLOR};
-  box-shadow: 0 0 15px black;
-  border-radius: 20px;
+
+  ${media.tablet`
+    top: 2.5%;
+    width: 95%;
+    height: 95%;
+    box-shadow: 0 0 10px black;
+    border-radius: 20px;
+  `}
 `;
 
 const Version = styled.p`
   position: absolute;
-  right: 1em;
+  right: 1.5em;
   bottom: 1.5em;
   color: white;
   font-size: 0.9rem;
-  font-weight: 200;
+  font-weight: 300;
 `;
 
 const LoginFormWrapper = styled.fieldset`
@@ -109,5 +115,6 @@ const LoginFormWrapper = styled.fieldset`
     text-align: center;
     color: ${MAIN_COLOR};
     cursor: pointer;
+    background-color: white;
   }
 `;
