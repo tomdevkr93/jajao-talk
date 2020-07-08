@@ -1,5 +1,6 @@
 import reset from 'styled-reset';
 import { createGlobalStyle, css } from 'styled-components';
+import media from './media-query';
 
 export const textEllipsis = css`
   text-overflow: ellipsis;
@@ -15,7 +16,11 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   html{
-    font-size: 16px;
+    font-size: 14px;
+    
+    ${media.tablet`
+      font-size: 16px;
+    `}
     font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
   }
   body{
