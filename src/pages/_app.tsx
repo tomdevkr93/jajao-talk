@@ -4,6 +4,7 @@ import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import GlobalStyles from '../utils/global-styles';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
+import Layout from '../components/common/Layout';
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Component, pageProps }: any) => {
   return (
@@ -22,7 +23,9 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compo
       </Head>
       <GlobalStyles />
       <RecoilRoot>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </RecoilRoot>
     </>
   );

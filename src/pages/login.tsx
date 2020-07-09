@@ -42,21 +42,13 @@ function Login() {
 export default Login;
 
 const LoginContainer = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  max-width: 414px;
-  max-height: 900px;
   background-color: ${MAIN_COLOR};
 
   ${media.tablet`
-    width: 95%;
-    height: 95%;
-    box-shadow: 0 0 10px black;
     border-radius: 20px;
+    box-shadow: 0px 0px 5px black;
   `}
 `;
 
