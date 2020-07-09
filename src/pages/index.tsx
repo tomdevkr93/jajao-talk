@@ -1,14 +1,17 @@
 import React from 'react';
 import WithAuth from '../components/auth/WithAuth';
-import { useRecoilValue } from 'recoil';
-import { meState } from '../recoil/atom';
 import styled from 'styled-components';
 import media from '../utils/media-query';
+import ChatRoomList from '../components/home/ChatRoomList';
+import Nav from '../components/home/Nav';
 
 function Home() {
-  const { nickname } = useRecoilValue(meState);
-
-  return <HomeContainer>Hello World! {nickname}</HomeContainer>;
+  return (
+    <HomeContainer>
+      <Nav />
+      <ChatRoomList />
+    </HomeContainer>
+  );
 }
 
 export default WithAuth(Home);
@@ -18,7 +21,7 @@ const HomeContainer = styled.div`
   height: 100%;
 
   ${media.tablet`
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0px 0px 5px black;
   `}
 `;

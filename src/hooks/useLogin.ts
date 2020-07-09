@@ -27,23 +27,14 @@ function useLogin() {
       event.preventDefault();
 
       try {
-        const {
-          data: { nickname: resultNickname },
-          message,
-        } = await axios.post('/login', {
-          nickname,
-          password,
-        });
-
-        if (resultNickname) {
+        if (nickname) {
           // 로그인 성공
           setMeState({
-            nickname: resultNickname,
+            nickname,
           });
           router.push('/');
         } else {
           // 로그인 실패
-          alert(message);
           setPassword('');
         }
       } catch (e) {

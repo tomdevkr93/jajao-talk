@@ -47,7 +47,7 @@ const LoginContainer = styled.div`
   background-color: ${MAIN_COLOR};
 
   ${media.tablet`
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0px 0px 5px black;
   `}
 `;
