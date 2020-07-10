@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import media from '../../utils/media-query';
 import SearchForm from './SearchForm';
+import useNav from '../../hooks/useNav';
 
 function Nav() {
+  const { onLogout } = useNav();
+
   return (
     <NavContainer>
       <SearchForm />
@@ -13,7 +16,7 @@ function Nav() {
           <AddChatRoom title="채팅방 생성" />
         </li>
         <li>
-          <Logout title="로그아웃" />
+          <Logout title="로그아웃" onClick={onLogout} />
         </li>
       </ul>
     </NavContainer>
@@ -25,7 +28,7 @@ export default Nav;
 const NavContainer = styled.nav`
   position: relative;
   width: 100%;
-  height: 40px;
+  height: 45px;
   background-color: #3c4043;
 
   ${media.tablet`
