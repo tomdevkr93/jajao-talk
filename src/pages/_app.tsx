@@ -22,11 +22,11 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compo
         ></link>
       </Head>
       <GlobalStyles />
-      <RecoilRoot>
-        <Layout>
+      <Layout>
+        <RecoilRoot>
           <Component {...pageProps} />
-        </Layout>
-      </RecoilRoot>
+        </RecoilRoot>
+      </Layout>
     </>
   );
 };
