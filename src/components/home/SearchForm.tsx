@@ -28,12 +28,12 @@ const SearchFormContainer = styled.div`
     left: 10px;
     top: 55%;
     transform: translateY(-50%);
-    width: 80%;
+    width: 70%;
     height: 50%;
   }
 
   input {
-    padding: 0 10px 5px 25px;
+    padding: 0 10px 5px 5px;
     width: 100%;
     height: 100%;
     background-color: transparent;
@@ -50,7 +50,7 @@ const SearchFormContainer = styled.div`
 
 const SearchIcon = styled(FaSearch)`
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   width: 18px;
   height: 18px;
