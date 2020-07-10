@@ -1,3 +1,11 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-axios.defaults.baseURL = 'http://ec2-52-78-197-190.ap-northeast-2.compute.amazonaws.com:8080/api';
+const instance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_API_URL,
+});
+
+instance.interceptors.response.use(function (response: AxiosResponse) {
+  return response.data;
+});
+
+export default instance;

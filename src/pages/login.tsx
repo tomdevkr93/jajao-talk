@@ -5,7 +5,7 @@ import { MAIN_COLOR } from '../utils/global-styles';
 import media from '../utils/media-query';
 
 function Login() {
-  const { nickname, password, onChangeNickname, onChangePassword, onSubmit } = useLogin();
+  const { nickname, password, onChangeNickname, onChangePassword, onSubmit, passwordError } = useLogin();
 
   return (
     <LoginContainer>
@@ -32,7 +32,9 @@ function Login() {
             minLength={4}
             maxLength={15}
             required={true}
+            className={passwordError ? 'password-error' : ''}
           />
+          {passwordError && <PasswordError>올바른 비밀번호가 아닙니다.</PasswordError>}
           <button>로그인</button>
         </LoginFormWrapper>
       </form>
@@ -99,6 +101,11 @@ const LoginFormWrapper = styled.fieldset`
     border-radius: 0 0 5px 5px;
   }
 
+  input.password-error {
+    border: 2px solid #e74c3c;
+    border-radius: 5px;
+  }
+
   button {
     margin-top: 0.5em;
     padding: 0.8em;
@@ -111,4 +118,10 @@ const LoginFormWrapper = styled.fieldset`
     cursor: pointer;
     background-color: white;
   }
+`;
+
+const PasswordError = styled.p`
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 5px;
 `;
