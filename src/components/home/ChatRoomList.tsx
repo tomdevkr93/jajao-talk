@@ -74,6 +74,7 @@ const List = styled.ul`
     padding: 8px 10px;
     height: 80px;
     cursor: pointer;
+    user-select: none;
     border-bottom: 1px solid #f8f8f8;
   }
 

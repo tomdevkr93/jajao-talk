@@ -1,31 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useCallback, useState } from 'react';
+import styled, { css } from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import media from '../../utils/media-query';
 import SearchForm from './SearchForm';
 import useNav from '../../hooks/useNav';
+import CreateChatRoomModal from './CreateChatRoomModal';
 
 function Nav() {
   const { onLogout } = useNav();
+  const [createModalState, setCreateModalState] = useState(false);
+
+  const onCreateChatRoom = useCallback(() => {
+    setCreateModalState((prvState) => !prvState);
+  }, []);
 
   return (
-    <NavContainer>
+    <NavContainer createModalState={createModalState}>
       <SearchForm />
       <ul>
         <li>
-          <AddChatRoom title="채팅방 생성" />
+          <CreateChatRoom title="채팅방 생성" onClick={onCreateChatRoom} />
         </li>
         <li>
           <Logout title="로그아웃" onClick={onLogout} />
         </li>
       </ul>
+      <CreateChatRoomModal createModalState={createModalState} />
     </NavContainer>
   );
 }
 
 export default Nav;
 
-const NavContainer = styled.nav`
+const NavContainer = styled.nav<{ createModalState: boolean }>`
   position: relative;
   width: 100%;
   height: 45px;
@@ -40,14 +47,25 @@ const NavContainer = styled.nav`
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 100;
 
     li {
       display: inline-block;
+      transition: transform 0.5s;
     }
+
+    ${({ createModalState }) =>
+      createModalState &&
+      css`
+        li:first-of-type {
+          position: relative;
+          transform: translate(20px, 60px) scale(1.2) rotate(225deg);
+        }
+      `}
   }
 `;
 
-const AddChatRoom = styled(FaTimes)`
+const CreateChatRoom = styled(FaTimes)`
   padding: 4px;
   width: 23px;
   height: 23px;
