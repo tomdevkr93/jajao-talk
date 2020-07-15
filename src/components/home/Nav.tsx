@@ -42,7 +42,7 @@ const NavContainer = styled.nav<{ createModalState: boolean }>`
     border-radius: 10px 10px 0 0;
   `}
 
-  ul {
+  & > ul {
     position: absolute;
     right: 10px;
     top: 50%;
