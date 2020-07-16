@@ -3,12 +3,16 @@ import WithAuth from '../components/auth/WithAuth';
 import styled from 'styled-components';
 import media from '../utils/media-query';
 import ChatRoomList from '../components/home/ChatRoomList';
-import Nav from '../components/home/Nav';
+import Nav from '../components/common/Nav';
+
+export type RootPage = {
+  type: 'home' | 'chat-room';
+};
 
 function Home() {
   return (
     <HomeContainer>
-      <Nav />
+      <Nav type="home" />
       <ChatRoomList />
     </HomeContainer>
   );

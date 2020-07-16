@@ -1,7 +1,11 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
-function SearchForm() {
+import { RootPage } from '../../pages';
+
+type Props = RootPage;
+
+function SearchForm({ type }: Props) {
   const onSubmit = useCallback((event: React.FormEvent<HTMLFormElement> | React.MouseEvent<SVGElement, MouseEvent>) => {
     event.preventDefault();
   }, []);
@@ -9,7 +13,7 @@ function SearchForm() {
   return (
     <SearchFormContainer>
       <form onSubmit={onSubmit}>
-        <input type="search" placeholder="채팅방 검색" />
+        <input type="search" placeholder={type === 'home' ? '채팅방 검색' : '채팅 검색'} />
         <SearchIcon onClick={onSubmit} />
       </form>
     </SearchFormContainer>

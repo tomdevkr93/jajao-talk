@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
+import { useRouter } from 'next/router';
 
 function ChatRoomList() {
+  const router = useRouter();
+
+  const onClickChatRoom = useCallback(() => {
+    router.push('/chat-room');
+  }, []);
+
   return (
     <List>
-      <li>
+      <li onClick={onClickChatRoom}>
         <header>
           <Category>게임</Category>
           <Title>

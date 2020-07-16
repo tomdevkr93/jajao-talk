@@ -17,7 +17,15 @@ function ChatRoomCreateForm() {
   return (
     <Form onSubmit={onSubmit}>
       <label htmlFor="title">채팅방 제목</label>
-      <input id="title" type="text" required={true} onChange={onChangeTitle} value={title} autoComplete="off" />
+      <input
+        id="title"
+        type="text"
+        required={true}
+        onChange={onChangeTitle}
+        value={title}
+        autoComplete="off"
+        maxLength={30}
+      />
       <label>채팅방 카테고리</label>
       <CategoryList>
         <li className={activeCategoryIndex === 0 ? 'active' : ''} onClick={onClickCategoryItem(0)}>
@@ -57,14 +65,16 @@ function ChatRoomCreateForm() {
 export default ChatRoomCreateForm;
 
 const Form = styled.form`
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
   width: 100%;
-  height: 100%;
-  padding: 100px 50px 50px;
+  padding: 0 45px;
   color: white;
 
   label {
     display: inline-block;
-    margin-top: 30px;
+    margin-top: 40px;
     font-size: 16px;
     cursor: pointer;
   }

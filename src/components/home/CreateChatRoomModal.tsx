@@ -25,7 +25,7 @@ const CreateChatRoomModalContainer = styled.div<{ createModalState: boolean }>`
   top: 45px;
   width: 100%;
   height: calc(100% - 45px);
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: black;
   border-radius: 0;
   z-index: 99;
 

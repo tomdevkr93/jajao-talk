@@ -1,28 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import media from '../../utils/media-query';
-import SearchForm from './SearchForm';
+import SearchForm from '../home/SearchForm';
 import useNav from '../../hooks/useNav';
-import CreateChatRoomModal from './CreateChatRoomModal';
+import CreateChatRoomModal from '../home/CreateChatRoomModal';
+import { RootPage } from '../../pages';
 
-function Nav() {
-  const { onLogout } = useNav();
-  const [createModalState, setCreateModalState] = useState(false);
+type Props = RootPage;
 
-  const onCreateChatRoom = useCallback(() => {
-    setCreateModalState((prvState) => !prvState);
-  }, []);
+function Nav({ type }: Props) {
+  const { onBackSpace, onCreateChatRoom, createModalState } = useNav();
 
   return (
     <NavContainer createModalState={createModalState}>
-      <SearchForm />
+      <SearchForm type={type} />
       <ul>
+        <li>{type === 'home' ? <CreateChatRoom title="채팅방 생성" onClick={onCreateChatRoom} /> : <>보관함</>}</li>
         <li>
-          <CreateChatRoom title="채팅방 생성" onClick={onCreateChatRoom} />
-        </li>
-        <li>
-          <Logout title="로그아웃" onClick={onLogout} />
+          <BackSpace title="뒤로가기" onClick={onBackSpace(type)} />
         </li>
       </ul>
       <CreateChatRoomModal createModalState={createModalState} />
@@ -76,7 +72,7 @@ const CreateChatRoom = styled(FaTimes)`
   cursor: pointer;
 `;
 
-const Logout = styled(FaTimes)`
+const BackSpace = styled(FaTimes)`
   margin-left: 8px;
   padding: 4px;
   width: 23px;

@@ -61,6 +61,7 @@ const Version = styled.p`
   color: white;
   font-size: 0.9rem;
   font-weight: 300;
+  letter-spacing: 0.3px;
 `;
 
 const LoginFormWrapper = styled.fieldset`
