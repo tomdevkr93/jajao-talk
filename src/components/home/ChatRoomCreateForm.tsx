@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
 import useChatRoomCreateForm from '../../hooks/useChatRoomCreateForm';
@@ -9,9 +9,10 @@ function ChatRoomCreateForm() {
     onChangeTitle,
     title,
     onClickCategoryItem,
-    activeCategoryIndex,
+    activeCategoryCode,
     onChangeHeadCountRange,
     headCount,
+    categoryList,
   } = useChatRoomCreateForm();
 
   return (
@@ -28,21 +29,15 @@ function ChatRoomCreateForm() {
       />
       <label>채팅방 카테고리</label>
       <CategoryList>
-        <li className={activeCategoryIndex === 0 ? 'active' : ''} onClick={onClickCategoryItem(0)}>
-          #자유
-        </li>
-        <li className={activeCategoryIndex === 1 ? 'active' : ''} onClick={onClickCategoryItem(1)}>
-          #고민
-        </li>
-        <li className={activeCategoryIndex === 2 ? 'active' : ''} onClick={onClickCategoryItem(2)}>
-          #운동
-        </li>
-        <li className={activeCategoryIndex === 3 ? 'active' : ''} onClick={onClickCategoryItem(3)}>
-          #태그4
-        </li>
-        <li className={activeCategoryIndex === 4 ? 'active' : ''} onClick={onClickCategoryItem(4)}>
-          #태그5
-        </li>
+        {categoryList.map(({ categoryCode, categoryName }) => (
+          <li
+            key={categoryCode}
+            className={categoryCode === activeCategoryCode ? 'active' : ''}
+            onClick={onClickCategoryItem(categoryCode)}
+          >
+            #{categoryName}
+          </li>
+        ))}
       </CategoryList>
       <label htmlFor="headCount">
         채팅방 인원수&nbsp;&nbsp;<HeadCount>{headCount}명</HeadCount>
@@ -62,7 +57,7 @@ function ChatRoomCreateForm() {
   );
 }
 
-export default ChatRoomCreateForm;
+export default memo(ChatRoomCreateForm);
 
 const Form = styled.form`
   position: absolute;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled, { css } from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 import media from '../../utils/media-query';
@@ -26,7 +26,7 @@ function Nav({ type }: Props) {
   );
 }
 
-export default Nav;
+export default memo(Nav);
 
 const NavContainer = styled.nav<{ createModalState: boolean }>`
   position: relative;

@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState, memo } from 'react';
 import styled from 'styled-components';
 import media from '../../utils/media-query';
 import Loading from './Loading';
@@ -23,7 +23,7 @@ function Layout({ children }: Props) {
   );
 }
 
-export default Layout;
+export default memo(Layout);
 
 const LayoutContainer = styled.div`
   position: absolute;

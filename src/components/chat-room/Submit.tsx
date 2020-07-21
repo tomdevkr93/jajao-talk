@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
 function Submit() {
@@ -10,7 +10,7 @@ function Submit() {
   );
 }
 
-export default Submit;
+export default memo(Submit);
 
 const SubmitContainer = styled.div`
   position: absolute;

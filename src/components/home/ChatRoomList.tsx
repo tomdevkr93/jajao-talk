@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
 import { useRouter } from 'next/router';
@@ -70,7 +70,7 @@ function ChatRoomList() {
     </List>
   );
 }
-export default ChatRoomList;
+export default memo(ChatRoomList);
 
 const List = styled.ul`
   height: calc(100% - 40px);

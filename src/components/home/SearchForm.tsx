@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 import { RootPage } from '../../pages';
@@ -20,7 +20,7 @@ function SearchForm({ type }: Props) {
   );
 }
 
-export default SearchForm;
+export default memo(SearchForm);
 
 const SearchFormContainer = styled.div`
   position: relative;

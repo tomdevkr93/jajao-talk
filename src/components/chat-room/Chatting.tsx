@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Submit from './Submit';
 
 function Chatting() {
@@ -9,4 +9,4 @@ function Chatting() {
   );
 }
 
-export default Chatting;
+export default memo(Chatting);
