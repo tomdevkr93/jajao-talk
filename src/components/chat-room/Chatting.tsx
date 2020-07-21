@@ -1,7 +1,12 @@
 import React from 'react';
+import Submit from './Submit';
 
 function Chatting() {
-  return <div>Chatting</div>;
+  return (
+    <div>
+      <Submit />
+    </div>
+  );
 }
 
 export default Chatting;

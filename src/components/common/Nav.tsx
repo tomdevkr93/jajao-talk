@@ -16,7 +16,7 @@ function Nav({ type }: Props) {
     <NavContainer createModalState={createModalState}>
       <SearchForm type={type} />
       <ul>
-        <li>{type === 'home' ? <CreateChatRoom title="채팅방 생성" onClick={onCreateChatRoom} /> : <>보관함</>}</li>
+        <li>{type === 'home' && <CreateChatRoom title="채팅방 생성" onClick={onCreateChatRoom} />}</li>
         <li>
           <BackSpace title="뒤로가기" onClick={onBackSpace(type)} />
         </li>
@@ -73,7 +73,7 @@ const CreateChatRoom = styled(FaTimes)`
 `;
 
 const BackSpace = styled(FaTimes)`
-  margin-left: 8px;
+  margin-left: 10px;
   padding: 4px;
   width: 23px;
   height: 23px;
