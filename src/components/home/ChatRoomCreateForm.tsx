@@ -6,8 +6,8 @@ import useChatRoomCreateForm from '../../hooks/useChatRoomCreateForm';
 function ChatRoomCreateForm() {
   const {
     onSubmit,
-    onChangeTitle,
-    title,
+    onChangeSubject,
+    subject,
     onClickCategoryItem,
     activeCategoryCode,
     onChangeHeadCountRange,
@@ -17,13 +17,13 @@ function ChatRoomCreateForm() {
 
   return (
     <Form onSubmit={onSubmit}>
-      <label htmlFor="title">채팅방 제목</label>
+      <label htmlFor="subject">채팅방 제목</label>
       <input
-        id="title"
+        id="subject"
         type="text"
         required={true}
-        onChange={onChangeTitle}
-        value={title}
+        onChange={onChangeSubject}
+        value={subject}
         autoComplete="off"
         maxLength={30}
       />
@@ -95,9 +95,9 @@ const Form = styled.form`
     border-radius: 5px;
     font-weight: 500;
     text-align: center;
-    color: ${MAIN_COLOR};
+    color: white;
     cursor: pointer;
-    background-color: white;
+    background-color: ${MAIN_COLOR};
   }
 `;
 

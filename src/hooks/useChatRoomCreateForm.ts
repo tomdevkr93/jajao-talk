@@ -1,3 +1,5 @@
+import { meState, createModalPopupState } from './../recoil/atom';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { useCallback, useState, useEffect } from 'react';
 import axios from '../lib/axios';
 
@@ -6,28 +8,33 @@ type Category = {
   categoryName: string;
 };
 function useChatRoomCreateForm() {
-  const [title, setTitle] = useState('');
+  const [subject, setSubject] = useState('');
   const [activeCategoryCode, setActiveCategoryCode] = useState('CATEGORY_FREEDOM');
   const [headCount, setHeadCount] = useState(1);
   const [categoryList, setCategoryList] = useState<Category[]>([]);
+  const { nickname } = useRecoilValue(meState);
+  const [createModelState, setCreateModalState] = useRecoilState(createModalPopupState);
 
   useEffect(() => {
-    // Create an scoped async function in the hook
-    async function getCategoryList() {
+    (async () => {
       try {
         const res = await axios('/chat/category');
         const categoryList = res.data;
         setCategoryList(categoryList);
       } catch (e) {
-        throw Error(e);
+        throw new Error(e);
       }
-    }
-    // Execute the created function directly
-    getCategoryList();
+    })();
   }, []);
 
-  const onChangeTitle = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+  useEffect(() => {
+    if (createModelState === false) {
+      resetFormData();
+    }
+  }, [createModelState]);
+
+  const onChangeSubject = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSubject(event.target.value);
   }, []);
 
   const onChangeHeadCountRange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,18 +48,41 @@ function useChatRoomCreateForm() {
     [],
   );
 
+  const resetFormData = useCallback(() => {
+    setSubject('');
+    setActiveCategoryCode('CATEGORY_FREEDOM');
+    setHeadCount(1);
+  }, []);
+
   const onSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log({ title, activeCategoryCode, headCount });
+
+      try {
+        const res: any = await axios.post('/chat/new', {
+          nickname,
+          categoryCode: activeCategoryCode,
+          subject,
+          headCount,
+        });
+
+        if (res.success) {
+          alert(res.message);
+          setCreateModalState(false);
+        } else {
+          alert(res.message);
+        }
+      } catch (e) {
+        throw new Error(e);
+      }
     },
-    [title, activeCategoryCode, headCount],
+    [nickname, subject, activeCategoryCode, headCount],
   );
 
   return {
     onSubmit,
-    onChangeTitle,
-    title,
+    onChangeSubject,
+    subject,
     onChangeHeadCountRange,
     headCount,
     onClickCategoryItem,

@@ -6,3 +6,8 @@ export const meState = atom({
     nickname: '',
   },
 });
+
+export const createModalPopupState = atom({
+  key: 'CreateModalPopupState',
+  default: false,
+});

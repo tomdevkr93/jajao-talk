@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import media from '../../utils/media-query';
 import ChatRoomCreateForm from './ChatRoomCreateForm';
+import { useRecoilValue } from 'recoil';
+import { createModalPopupState } from '../../recoil/atom';
 
-type Props = {
-  createModalState: boolean;
-};
+function CreateChatRoomModal() {
+  const createModalState = useRecoilValue(createModalPopupState);
 
-function CreateChatRoomModal({ createModalState }: Props) {
   return (
     <CreateChatRoomModalContainer createModalState={createModalState}>
       <ChatRoomCreateForm />

@@ -21,7 +21,7 @@ function Nav({ type }: Props) {
           <BackSpace title="뒤로가기" onClick={onBackSpace(type)} />
         </li>
       </ul>
-      <CreateChatRoomModal createModalState={createModalState} />
+      <CreateChatRoomModal />
     </NavContainer>
   );
 }

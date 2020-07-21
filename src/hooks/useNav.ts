@@ -1,11 +1,11 @@
-import { meState } from './../recoil/atom';
-import { useCallback, useState } from 'react';
-import { useResetRecoilState } from 'recoil';
+import { meState, createModalPopupState } from './../recoil/atom';
+import { useCallback } from 'react';
+import { useResetRecoilState, useRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 
 function useNav() {
   const setMeState = useResetRecoilState(meState);
-  const [createModalState, setCreateModalState] = useState(false);
+  const [createModalState, setCreateModalState] = useRecoilState(createModalPopupState);
   const router = useRouter();
 
   const onBackSpace = useCallback(
