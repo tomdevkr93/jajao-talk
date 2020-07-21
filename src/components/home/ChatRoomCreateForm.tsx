@@ -29,13 +29,13 @@ function ChatRoomCreateForm() {
       />
       <label>채팅방 카테고리</label>
       <CategoryList>
-        {categoryList.map(({ categoryCode, categoryName }) => (
+        {categoryList.map(({ categoryCode, category }) => (
           <li
             key={categoryCode}
             className={categoryCode === activeCategoryCode ? 'active' : ''}
             onClick={onClickCategoryItem(categoryCode)}
           >
-            #{categoryName}
+            #{category}
           </li>
         ))}
       </CategoryList>

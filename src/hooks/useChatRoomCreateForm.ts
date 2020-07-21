@@ -5,7 +5,7 @@ import axios from '../lib/axios';
 
 type Category = {
   categoryCode: string;
-  categoryName: string;
+  category: string;
 };
 function useChatRoomCreateForm() {
   const [subject, setSubject] = useState('');
@@ -18,7 +18,7 @@ function useChatRoomCreateForm() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios('/chat/category');
+        const res = await axios('/chatroom/categories');
         const categoryList = res.data;
         setCategoryList(categoryList);
       } catch (e) {
@@ -59,7 +59,7 @@ function useChatRoomCreateForm() {
       event.preventDefault();
 
       try {
-        const res: any = await axios.post('/chat/new', {
+        const res: any = await axios.post('/chatroom', {
           nickname,
           categoryCode: activeCategoryCode,
           subject,

@@ -2,9 +2,11 @@ import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
 import { useRouter } from 'next/router';
+import useChatRoomList from '../../hooks/useChatRoomList';
 
 function ChatRoomList() {
   const router = useRouter();
+  const { chatRoomList } = useChatRoomList();
 
   const onClickChatRoom = useCallback(() => {
     router.push('/chat-room');
@@ -12,61 +14,19 @@ function ChatRoomList() {
 
   return (
     <List>
-      <li onClick={onClickChatRoom}>
-        <header>
-          <Category>게임</Category>
-          <Title>
-            카트라이더 모바일 같이 하실뿐 들어오세요~
-            <HeadCount>&nbsp;(4/5)</HeadCount>
-          </Title>
-        </header>
-        <LastMessage>지금 ㄲ?</LastMessage>
-        <LastMessageTime>12분전 대화</LastMessageTime>
-      </li>
-      <li>
-        <header>
-          <Category>취미</Category>
-          <Title>
-            주식 쟁이 커먼
-            <HeadCount>&nbsp;(3/5)</HeadCount>
-          </Title>
-        </header>
-        <LastMessage>다음 상장 빅히트라는데...</LastMessage>
-        <LastMessageTime>46분전 대화</LastMessageTime>
-      </li>
-      <li>
-        <header>
-          <Category>일상</Category>
-          <Title>
-            20대 30대 친구 구합니다!
-            <HeadCount>&nbsp;(3/5)</HeadCount>
-          </Title>
-        </header>
-        <LastMessage></LastMessage>
-        <LastMessageTime>대화내역 없음</LastMessageTime>
-      </li>
-      <li>
-        <header>
-          <Category>게임</Category>
-          <Title>
-            메이플 쩔해드려요!
-            <HeadCount>&nbsp;(2/5)</HeadCount>
-          </Title>
-        </header>
-        <LastMessage>시간당 3억메소에 쩔해드립니다.</LastMessage>
-        <LastMessageTime>33분전 대화</LastMessageTime>
-      </li>
-      <li>
-        <header>
-          <Category>취미</Category>
-          <Title>
-            배드민턴 잘치시는분?
-            <HeadCount>&nbsp;(4/5)</HeadCount>
-          </Title>
-        </header>
-        <LastMessage>배드민턴 동호회 들어오실레요?</LastMessage>
-        <LastMessageTime>56분전 대화</LastMessageTime>
-      </li>
+      {chatRoomList.map(({ chatRoomId, category, subject, headCount, chatLog: { content, chatLogTime } }) => (
+        <li onClick={onClickChatRoom} key={chatRoomId}>
+          <header>
+            <Category>{category}</Category>
+            <Title>
+              {subject}
+              <HeadCount>&nbsp;({headCount}/5)</HeadCount>
+            </Title>
+          </header>
+          <LastMessage>{content}</LastMessage>
+          <LastMessageTime>{chatLogTime}</LastMessageTime>
+        </li>
+      ))}
     </List>
   );
 }
