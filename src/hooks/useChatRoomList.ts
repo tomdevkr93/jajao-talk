@@ -1,18 +1,31 @@
+import { chatRoomListState } from './../recoil/atom';
+import { useEffect } from 'react';
+import axios from '../lib/axios';
+import { useRecoilState } from 'recoil';
+
 function useChatRoomList() {
-  const chatRoomList = [
-    {
-      chatRoomId: 2,
-      chatLog: {
-        chatLogId: 3,
-        content: '채팅방이 생성되었습니다.',
-        chatLogTime: '2020-07-21T08:45:33.398',
-      },
-      category: '자유',
-      subject: '제목 테스트',
-      headCount: 5,
-      createdTime: '2020-07-21T08:45:33.398',
-    },
-  ];
+  const [chatRoomList, setChatRoomList] = useRecoilState(chatRoomListState);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await axios.get('/chatrooms', {
+          params: {
+            offset: 0,
+            limit: 10,
+          },
+        });
+
+        if (res.success) {
+          setChatRoomList(res.data);
+        } else {
+          throw new Error(res.message);
+        }
+      } catch (e) {
+        throw new Error(e);
+      }
+    })();
+  }, []);
 
   return {
     chatRoomList,

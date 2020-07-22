@@ -11,3 +11,8 @@ export const createModalPopupState = atom({
   key: 'CreateModalPopupState',
   default: false,
 });
+
+export const chatRoomListState = atom({
+  key: 'ChatRoomListState',
+  default: [],
+});

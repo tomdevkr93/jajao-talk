@@ -12,6 +12,14 @@ function ChatRoomList() {
     router.push('/chat-room');
   }, []);
 
+  const setLastMessageTime = useCallback((chatLogTime: string): number => {
+    const logTime = new Date(chatLogTime);
+    const nowTime = new Date();
+    const diffMinute = Math.ceil((nowTime.getTime() - logTime.getTime()) / (1000 * 60));
+
+    return diffMinute;
+  }, []);
+
   return (
     <List>
       {chatRoomList.map(({ chatRoomId, category, subject, headCount, chatLog: { content, chatLogTime } }) => (
@@ -24,7 +32,9 @@ function ChatRoomList() {
             </Title>
           </header>
           <LastMessage>{content}</LastMessage>
-          <LastMessageTime>{chatLogTime}</LastMessageTime>
+          <LastMessageTime className={setLastMessageTime(chatLogTime) < 30 ? 'not-long-after' : ''}>
+            {setLastMessageTime(chatLogTime)}분전 대화
+          </LastMessageTime>
         </li>
       ))}
     </List>
@@ -78,4 +88,8 @@ const LastMessageTime = styled.span`
   bottom: 8px;
   font-size: 12px;
   color: ${MAIN_COLOR};
+
+  &.not-long-after {
+    color: #fd79a8;
+  }
 `;
