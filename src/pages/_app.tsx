@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import GlobalStyles from '../utils/global-styles';
