@@ -14,29 +14,29 @@ function ChatRoomList() {
 
   const setLastMessageTime = useCallback((chatLogTime: string): number => {
     const logTime = new Date(chatLogTime);
-    const nowTime = new Date();
-    const diffMinute = Math.ceil((nowTime.getTime() - logTime.getTime()) / (1000 * 60));
+    const diffMinute = Math.ceil((Date.now() - logTime.getTime()) / (1000 * 60));
 
     return diffMinute;
   }, []);
 
   return (
     <List>
-      {chatRoomList.map(({ chatRoomId, category, subject, headCount, chatLog: { content, chatLogTime } }) => (
-        <li onClick={onClickChatRoom} key={chatRoomId}>
-          <header>
-            <Category>{category}</Category>
-            <Title>
-              {subject}
-              <HeadCount>&nbsp;({headCount}/5)</HeadCount>
-            </Title>
-          </header>
-          <LastMessage>{content}</LastMessage>
-          <LastMessageTime className={setLastMessageTime(chatLogTime) < 30 ? 'not-long-after' : ''}>
-            {setLastMessageTime(chatLogTime)}분전 대화
-          </LastMessageTime>
-        </li>
-      ))}
+      {chatRoomList.state === 'hasValue' &&
+        chatRoomList.contents.map(({ chatRoomId, category, subject, headCount, chatLog: { content, chatLogTime } }) => (
+          <li onClick={onClickChatRoom} key={chatRoomId}>
+            <header>
+              <Category>{category}</Category>
+              <Title>
+                {subject}
+                <HeadCount>&nbsp;({headCount}/5)</HeadCount>
+              </Title>
+            </header>
+            <LastMessage>{content}</LastMessage>
+            <LastMessageTime className={setLastMessageTime(chatLogTime) < 30 ? 'not-long-after' : ''}>
+              {setLastMessageTime(chatLogTime)}분전 대화
+            </LastMessageTime>
+          </li>
+        ))}
     </List>
   );
 }

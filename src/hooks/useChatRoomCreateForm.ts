@@ -1,31 +1,16 @@
+import { categoryListQuery } from './../recoil/selector';
 import { meState, createModalPopupState } from './../recoil/atom';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { useCallback, useState, useEffect } from 'react';
 import axios from '../lib/axios';
 
-type Category = {
-  categoryCode: string;
-  category: string;
-};
 function useChatRoomCreateForm() {
   const [subject, setSubject] = useState('');
   const [activeCategoryCode, setActiveCategoryCode] = useState('CATEGORY_FREEDOM');
   const [headCount, setHeadCount] = useState(1);
-  const [categoryList, setCategoryList] = useState<Category[]>([]);
+  const categoryList = useRecoilValueLoadable(categoryListQuery);
   const { nickname } = useRecoilValue(meState);
   const [createModelState, setCreateModalState] = useRecoilState(createModalPopupState);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios('/chatroom/categories');
-        const categoryList = res.data;
-        setCategoryList(categoryList);
-      } catch (e) {
-        throw new Error(e);
-      }
-    })();
-  }, []);
 
   useEffect(() => {
     if (createModelState === false) {
