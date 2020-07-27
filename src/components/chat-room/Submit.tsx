@@ -21,9 +21,11 @@ const SubmitContainer = styled.div`
   border-radius: 0 0 5px 5px;
 
   textarea {
+    padding: 5px;
     width: 75%;
     height: 100%;
     border-radius: 0 0 0 5px;
+    font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
   }
 
   textarea:focus {

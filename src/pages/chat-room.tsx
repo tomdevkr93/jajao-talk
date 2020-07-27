@@ -13,7 +13,8 @@ function ChatRoom() {
   );
 }
 
-export default withAuth(ChatRoom);
+// export default withAuth(ChatRoom);
+export default ChatRoom;
 
 const ChatRoomContainer = styled.div`
   width: 100%;
