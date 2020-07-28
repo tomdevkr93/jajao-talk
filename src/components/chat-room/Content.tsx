@@ -1,46 +1,23 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
+import useChatRoomContent from '../../hooks/useChatRoomContent';
 function Content() {
+  const { meNickname, chatContents } = useChatRoomContent();
+
   return (
     <ContentContainer>
-      <li className="others">
-        <span>개발자가되고싶은아이</span>
-        <p>네 반가워요?</p>
-      </li>
-      <li className="me">
-        <p>안녕하세요?</p>
-      </li>
-      <li className="others">
-        <span>개발자가되고싶은아이</span>
-        <p>
-          네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네
-          안녕하세요~네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~네 안녕하세요~ 네 안녕하세요~ 네
-          안녕하세요~ 네 안녕하세요~
-        </p>
-      </li>
-      <li className="me">
-        <p>
-          반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다
-          반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다
-        </p>
-      </li>
-      <li className="others">
-        <span>개발자가되고싶은아이</span>
-        <p>네 반가워요?</p>
-      </li>
-      <li className="me">
-        <p>잘 지내셨어요?</p>
-      </li>
-      <li className="others">
-        <span>개발자가되고싶은아이</span>
-        <p>네 잘 지냈어요~ oo님은 잘 지내셨어요? 하하하 가나다 라마바사 아자차카 타파하</p>
-      </li>
+      {chatContents.map(({ id, nickname, content }) => (
+        <li key={id} className={meNickname === nickname ? 'me' : 'others'}>
+          {meNickname !== nickname && <span>{nickname}</span>}
+          <p>{content}</p>
+        </li>
+      ))}
     </ContentContainer>
   );
 }
 
-export default Content;
+export default memo(Content);
 
 const ContentContainer = styled.ul`
   position: relative;
@@ -62,7 +39,7 @@ const ContentContainer = styled.ul`
       display: inline-block;
       position: absolute;
       left: 15px;
-      top: -18px;
+      top: -17px;
       font-size: 12px;
     }
 
@@ -91,6 +68,6 @@ const ContentContainer = styled.ul`
   }
 
   li.others {
-    margin-top: 38px;
+    margin-top: 37px;
   }
 `;
