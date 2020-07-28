@@ -8,6 +8,14 @@ export const textEllipsis = css`
   overflow: hidden;
 `;
 
+export const hideScrollBar = css`
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+`;
+
 export const MAIN_COLOR = '#5cbdea';
 
 const GlobalStyles = createGlobalStyle`

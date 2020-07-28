@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { MAIN_COLOR } from '../../utils/global-styles';
+import { MAIN_COLOR, hideScrollBar } from '../../utils/global-styles';
 import useChatRoomContent from '../../hooks/useChatRoomContent';
 function Content() {
   const { meNickname, chatContents } = useChatRoomContent();
@@ -25,11 +25,7 @@ const ContentContainer = styled.ul`
   width: 100%;
   height: calc(100% - (45px + 100px));
   overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
+  ${hideScrollBar}
 
   li {
     position: relative;
