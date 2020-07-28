@@ -34,6 +34,7 @@ const LayoutContainer = styled.div`
   height: 100%;
   max-width: 414px;
   max-height: 900px;
+  min-height: 480px;
 
   ${media.tablet`
     width: 95%;

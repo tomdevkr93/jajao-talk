@@ -1,10 +1,42 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
 function Submit() {
+  const [message, setMessage] = useState('');
+
+  const onChangeMessage = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(event.target.value);
+  }, []);
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (event.keyCode === 13) {
+        onSubmit();
+      }
+    },
+    [message],
+  );
+
+  const onSubmit = useCallback(
+    (event?: React.FormEvent<HTMLFormElement>) => {
+      if (event) {
+        event.preventDefault();
+      }
+      if (message.length === 0) {
+        return;
+      }
+
+      console.log(message);
+      setTimeout(() => {
+        setMessage('');
+      });
+    },
+    [message],
+  );
+
   return (
-    <SubmitContainer>
-      <textarea></textarea>
+    <SubmitContainer onSubmit={onSubmit}>
+      <textarea onKeyDown={onKeyDown} onChange={onChangeMessage} value={message} />
       <button>전송</button>
     </SubmitContainer>
   );
@@ -12,7 +44,7 @@ function Submit() {
 
 export default memo(Submit);
 
-const SubmitContainer = styled.div`
+const SubmitContainer = styled.form`
   position: absolute;
   left: 0;
   bottom: 0;

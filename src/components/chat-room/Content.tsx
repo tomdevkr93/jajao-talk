@@ -51,7 +51,7 @@ const ContentContainer = styled.ul`
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    display: none; /* Chrome, Safari, Opera */
   }
 
   li {
