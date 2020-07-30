@@ -1,38 +1,10 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
+import useChatRoomSubmit from '../../hooks/useChatRoomSubmit';
+
 function Submit() {
-  const [message, setMessage] = useState('');
-
-  const onChangeMessage = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(event.target.value);
-  }, []);
-
-  const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (event.keyCode === 13) {
-        onSubmit();
-      }
-    },
-    [message],
-  );
-
-  const onSubmit = useCallback(
-    (event?: React.FormEvent<HTMLFormElement>) => {
-      if (event) {
-        event.preventDefault();
-      }
-      if (message.length === 0) {
-        return;
-      }
-
-      console.log(message);
-      setTimeout(() => {
-        setMessage('');
-      });
-    },
-    [message],
-  );
+  const { onChangeMessage, onKeyDown, onSubmit, message } = useChatRoomSubmit();
 
   return (
     <SubmitContainer onSubmit={onSubmit}>
