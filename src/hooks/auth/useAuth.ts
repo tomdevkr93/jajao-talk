@@ -13,8 +13,6 @@ function useAuth() {
     }
   }, [nickname]);
 
-  return {
-    nickname,
-  };
+  return null;
 }
 export default useAuth;
