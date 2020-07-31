@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import withAuth from '../components/auth/WithAuth';
 import Nav from '../components/common/Nav';
 import Chatting from '../components/chat-room/Chatting';
+import useAuth from '../hooks/auth/useAuth';
 
 function ChatRoom() {
+  useAuth();
+
   return (
     <ChatRoomContainer>
       <Nav type="chat-room" />
@@ -13,7 +15,7 @@ function ChatRoom() {
   );
 }
 
-export default withAuth(ChatRoom);
+export default ChatRoom;
 
 const ChatRoomContainer = styled.div`
   width: 100%;

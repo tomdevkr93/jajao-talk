@@ -1,15 +1,17 @@
 import React from 'react';
-import WithAuth from '../components/auth/WithAuth';
 import styled from 'styled-components';
 import media from '../utils/media-query';
 import ChatRoomList from '../components/home/ChatRoomList';
 import Nav from '../components/common/Nav';
+import useAuth from '../hooks/auth/useAuth';
 
 export type RootPage = {
   type: 'home' | 'chat-room';
 };
 
 function Home() {
+  useAuth();
+
   return (
     <HomeContainer>
       <Nav type="home" />
@@ -18,7 +20,7 @@ function Home() {
   );
 }
 
-export default WithAuth(Home);
+export default Home;
 
 const HomeContainer = styled.div`
   width: 100%;
