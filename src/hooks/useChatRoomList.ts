@@ -1,8 +1,8 @@
-import { chatRoomListQuery } from './../recoil/selector';
+import { chatRoomListState } from './../recoil/atom';
 import { useRecoilValueLoadable } from 'recoil';
 
 function useChatRoomList() {
-  const chatRoomList = useRecoilValueLoadable(chatRoomListQuery);
+  const chatRoomList = useRecoilValueLoadable(chatRoomListState);
 
   return {
     chatRoomList,
