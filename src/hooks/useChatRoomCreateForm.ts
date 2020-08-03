@@ -1,5 +1,5 @@
-import { categoryListQuery } from './../recoil/selector';
-import { meState, createModalPopupState, chatRoomListState } from './../recoil/atom';
+import { categoryListQuery, chatRoomListQuery } from './../recoil/selector';
+import { meState, createModalPopupState } from './../recoil/atom';
 import { useRecoilValue, useRecoilState, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import { useCallback, useState, useEffect } from 'react';
 import axios from '../lib/axios';
@@ -11,7 +11,7 @@ function useChatRoomCreateForm() {
   const categoryList = useRecoilValueLoadable(categoryListQuery);
   const { nickname } = useRecoilValue(meState);
   const [createModelState, setCreateModalState] = useRecoilState(createModalPopupState);
-  const setChatRoomListState = useSetRecoilState(chatRoomListState);
+  const setChatRoomListQuery = useSetRecoilState(chatRoomListQuery);
 
   useEffect(() => {
     if (createModelState === false) {
@@ -55,7 +55,7 @@ function useChatRoomCreateForm() {
         if (res.success) {
           resetFormData();
           setCreateModalState(false);
-          setChatRoomListState((prevState) => [...prevState, res.data]);
+          setChatRoomListQuery((prevState) => [...prevState, res.data]);
           alert(res.message);
         } else {
           alert(res.message);
