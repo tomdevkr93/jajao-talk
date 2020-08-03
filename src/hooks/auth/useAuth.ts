@@ -13,8 +13,6 @@ function useAuth() {
     }
   }, [nickname]);
 
-  return {
-    message: '사용자 인증 성공',
-  };
+  return null;
 }
 export default useAuth;
