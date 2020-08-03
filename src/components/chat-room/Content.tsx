@@ -7,12 +7,17 @@ function Content() {
 
   return (
     <ContentContainer>
-      {chatContents.map(({ id, nickname, content }) => (
-        <li key={id} className={meNickname === nickname ? 'me' : 'others'}>
-          {meNickname !== nickname && <span>{nickname}</span>}
-          <p>{content}</p>
-        </li>
-      ))}
+      {chatContents.map(
+        ({ nickname, chatLogTime, content, type }) =>
+          (type === 'ENTER' && <EnterMessage key={nickname + chatLogTime}>{content}</EnterMessage>) ||
+          (type === 'MESSAGE' && (
+            <li key={nickname + chatLogTime} className={meNickname === nickname ? 'me' : 'others'}>
+              {meNickname !== nickname && <span>{nickname}</span>}
+              <p>{content}</p>
+            </li>
+          )) ||
+          (type === 'LEAVE' && <LeaveMessage key={nickname + chatLogTime}>{content}</LeaveMessage>),
+      )}
     </ContentContainer>
   );
 }
@@ -66,4 +71,17 @@ const ContentContainer = styled.ul`
   li.others {
     margin-top: 37px;
   }
+`;
+
+const EnterMessage = styled.li`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #7f8c8d;
+`;
+const LeaveMessage = styled.li`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #7f8c8d;
 `;

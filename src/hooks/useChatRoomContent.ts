@@ -3,65 +3,71 @@ import { useState, useEffect } from 'react';
 import { meState } from '../recoil/atom';
 
 type ChatContent = {
-  id: number;
+  type: 'ENTER' | 'MESSAGE' | 'LEAVE';
+  chatRoomId: number;
   nickname: string;
   content: string;
+  chatLogTime: string;
 };
 
 function useChatRoomContent() {
   const { nickname: meNickname } = useRecoilValue(meState);
   const [chatContents] = useState<ChatContent[]>([
     {
-      id: 1,
-      nickname: '개발자가되고싶은아이',
-      content: '네 반가워요?',
-    },
-    {
-      id: 2,
+      type: 'MESSAGE',
+      chatRoomId: 2,
       nickname: 'test',
-      content: '안녕하세요?',
+      content: '테스트',
+      chatLogTime: '2020-08-02T02:20:48.613',
     },
     {
-      id: 3,
+      type: 'MESSAGE',
+      chatRoomId: 2,
       nickname: '개발자가되고싶은아이',
-      content:
-        '네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~ 네 안녕하세요~',
+      content: '하이',
+      chatLogTime: '2020-08-02T02:22:48.613',
     },
     {
-      id: 4,
+      type: 'MESSAGE',
+      chatRoomId: 2,
+      nickname: 'tester',
+      content: '테스트',
+      chatLogTime: '2020-08-02T02:23:48.613',
+    },
+    {
+      type: 'ENTER',
+      chatRoomId: 2,
+      nickname: 'devho',
+      content: 'devho님이 채팅방에 입장하셨습니다.',
+      chatLogTime: '2020-08-02T02:20:48.613',
+    },
+    {
+      type: 'MESSAGE',
+      chatRoomId: 2,
+      nickname: 'tester',
+      content: '테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스',
+      chatLogTime: '2020-08-02T02:26:48.613',
+    },
+    {
+      type: 'LEAVE',
+      chatRoomId: 2,
+      nickname: 'tester',
+      content: 'tester님이 채팅방을 나가셨습니다.',
+      chatLogTime: '2020-08-02T02:20:48.613',
+    },
+    {
+      type: 'MESSAGE',
+      chatRoomId: 2,
       nickname: 'test',
-      content:
-        '반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다 반갑습니다',
+      content: '테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트',
+      chatLogTime: '2020-08-02T02:23:48.613',
     },
     {
-      id: 5,
+      type: 'MESSAGE',
+      chatRoomId: 2,
       nickname: '개발자가되고싶은아이',
-      content: '네 반가워요?',
-    },
-    {
-      id: 6,
-      nickname: 'test',
-      content: '잘 지내셨어요?',
-    },
-    {
-      id: 7,
-      nickname: '개발자가되고싶은아이',
-      content: '네 잘 지냈어요~ oo님은 잘 지내셨어요? 하하하 가나다 라마바사 아자차카 타파하',
-    },
-    {
-      id: 8,
-      nickname: '개발자가되고싶은아이',
-      content: '네 반가워요?',
-    },
-    {
-      id: 9,
-      nickname: '개발자가되고싶은아이',
-      content: '네 반가워요?',
-    },
-    {
-      id: 10,
-      nickname: '개발자가되고싶은아이',
-      content: '네 반가워요?',
+      content: '테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트테스트 테스트',
+      chatLogTime: '2020-08-02T02:23:48.613',
     },
   ]);
 

@@ -1,16 +1,11 @@
 import React, { useCallback, memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
-import { useRouter } from 'next/router';
 import useChatRoomList from '../../hooks/useChatRoomList';
+import Link from 'next/link';
 
 function ChatRoomList() {
-  const router = useRouter();
   const { chatRoomList } = useChatRoomList();
-
-  const onClickChatRoom = useCallback(() => {
-    router.push('/chat-room');
-  }, []);
 
   const setLastMessageTime = useCallback((chatLogTime: string): number => {
     const logTime = new Date(chatLogTime);
@@ -23,18 +18,22 @@ function ChatRoomList() {
     <List>
       {chatRoomList.state === 'hasValue' &&
         chatRoomList.contents.map(({ chatRoomId, category, subject, headCount, chatLog: { content, chatLogTime } }) => (
-          <li onClick={onClickChatRoom} key={chatRoomId}>
-            <header>
-              <Category>{category}</Category>
-              <Title>
-                {subject}
-                <HeadCount>&nbsp;({headCount}/5)</HeadCount>
-              </Title>
-            </header>
-            <LastMessage>{content}</LastMessage>
-            <LastMessageTime className={setLastMessageTime(chatLogTime) < 30 ? 'not-long-after' : ''}>
-              {setLastMessageTime(chatLogTime)}분전 대화
-            </LastMessageTime>
+          <li key={chatRoomId}>
+            <Link href="/chat-room/[id]" as={`/chat-room/${chatRoomId}`}>
+              <a>
+                <header>
+                  <Category>{category}</Category>
+                  <Title>
+                    {subject}
+                    <HeadCount>&nbsp;({headCount}/5)</HeadCount>
+                  </Title>
+                </header>
+                <LastMessage>{content}</LastMessage>
+                <LastMessageTime className={setLastMessageTime(chatLogTime) < 30 ? 'not-long-after' : ''}>
+                  {setLastMessageTime(chatLogTime)}분전 대화
+                </LastMessageTime>
+              </a>
+            </Link>
           </li>
         ))}
     </List>

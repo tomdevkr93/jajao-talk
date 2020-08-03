@@ -30,6 +30,7 @@ const SubmitContainer = styled.form`
     height: 100%;
     border-radius: 0 0 0 5px;
     font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+    resize: none;
   }
 
   textarea:focus {

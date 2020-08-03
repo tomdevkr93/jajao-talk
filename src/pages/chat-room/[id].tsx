@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Nav from '../components/common/Nav';
-import Chatting from '../components/chat-room/Chatting';
-import useAuth from '../hooks/auth/useAuth';
+import Nav from '../../components/common/Nav';
+import Chatting from '../../components/chat-room/Chatting';
+import useAuth from '../../hooks/auth/useAuth';
 
 function ChatRoom() {
   useAuth();
