@@ -7,8 +7,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
-    "@types/react-icons": "^3.0.0",
     "axios": "^0.19.2",
     "next": "^9.4.4",
     "react": "^16.13.1",
@@ -16,13 +14,14 @@
     "react-icons": "^3.10.0",
     "recoil": "^0.0.10",
     "styled-components": "^5.1.1",
-    "styled-reset": "^4.2.0",
-    "use-socketio": "^2.0.3"
+    "styled-reset": "^4.2.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "14.0.14",
     "@types/react": "16.9.41",
     "@types/react-dom": "16.9.8",
+    "@types/react-icons": "^3.0.0",
     "@types/recoil": "^0.0.1",
     "@types/styled-components": "5.1.0",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
