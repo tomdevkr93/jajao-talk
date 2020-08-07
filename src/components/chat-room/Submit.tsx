@@ -3,8 +3,12 @@ import styled from 'styled-components';
 import { MAIN_COLOR } from '../../utils/global-styles';
 import useChatRoomSubmit from '../../hooks/useChatRoomSubmit';
 
-function Submit() {
-  const { onChangeMessage, onKeyDown, onSubmit, message } = useChatRoomSubmit();
+type Props = {
+  webSocket: WebSocket
+}
+
+function Submit({ webSocket }: Props) {
+  const { onChangeMessage, onKeyDown, onSubmit, message } = useChatRoomSubmit(webSocket);
 
   return (
     <SubmitContainer onSubmit={onSubmit}>

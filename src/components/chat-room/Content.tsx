@@ -2,8 +2,12 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import { MAIN_COLOR, hideScrollBar } from '../../utils/global-styles';
 import useChatRoomContent from '../../hooks/useChatRoomContent';
-function Content() {
-  const { meNickname, chatContents } = useChatRoomContent();
+
+type Props = {
+  webSocket: WebSocket;
+};
+function Content({ webSocket }: Props) {
+  const { meNickname, chatContents } = useChatRoomContent(webSocket);
 
   return (
     <ContentContainer>

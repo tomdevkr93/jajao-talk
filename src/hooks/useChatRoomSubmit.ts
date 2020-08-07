@@ -1,8 +1,11 @@
-import { useState, useCallback, useEffect } from 'react';
-function useChatRoomSubmit() {
+import { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
+import { meState } from '../recoil/atom';
+function useChatRoomSubmit(webSocket: WebSocket) {
   const [message, setMessage] = useState('');
-
-  useEffect(() => {}, []);
+  const { nickname } = useRecoilValue(meState);
+  const router = useRouter();
 
   const onChangeMessage = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -17,6 +20,19 @@ function useChatRoomSubmit() {
     [message],
   );
 
+  const sendMessage = useCallback((message: string) => {
+    const {query: { id: chatRoomId }} = router;
+    
+    webSocket.send(
+      JSON.stringify({
+        type: 'MESSAGE',
+        chatRoomId,
+        nickname,
+        content: message,
+      }),
+    );
+  }, []);
+
   const onSubmit = useCallback(
     (event?: React.FormEvent<HTMLFormElement>) => {
       if (event) {
@@ -26,7 +42,7 @@ function useChatRoomSubmit() {
         return;
       }
 
-      console.log(message);
+      sendMessage(message);
       setTimeout(() => {
         setMessage('');
       });
